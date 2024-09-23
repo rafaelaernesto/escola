@@ -1,13 +1,10 @@
-function logar(){
-    //RECEBER DADOS
-    email = document.querySelector('#email').value;
-    senha = document.querySelector('#senha').value;
-
-    //VERIFICAR DADOS
-    if(!email || !senha){
-        return alert('complete o campo');
+async function generatePDF() {
+    // Import the jsPDF module
+    const { jsPDF } = window.jspdf;
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const doc = new jsPDF();
+    doc.text(`Nome: ${name}`, 10, 10);
+    doc.text(`Email: ${email}`, 10, 20);
+    doc.save('form-data.pdf');
     }
-    //enviaros dados
-    axios.post('api/users/logar',{
-        email, senha
-    }).then(response)
